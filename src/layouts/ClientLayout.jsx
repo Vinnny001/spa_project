@@ -20,6 +20,12 @@ export default function ClientLayout() {
         <Link to="/client/dashboard" style={styles.link}>Dashboard</Link>
         <Link to="/client/services" style={styles.link}>Services</Link>
 
+        <Link to="/client/book-appointment" style={styles.link}>Book Appointment</Link>
+<Link to="/client/my-appointments" style={styles.link}>My Appointments</Link>
+<Link to="/client/services-history" style={styles.link}>Services History</Link>
+<Link to="/client/notifications" style={styles.link}>Notifications</Link>
+<Link to="/client/payment" style={styles.link}>Payment</Link>
+
         <button onClick={handleLogout} style={styles.logoutBtn}>
           Logout
         </button>
