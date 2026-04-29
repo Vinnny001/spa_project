@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -9,108 +12,122 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!form.email || !form.password) {
-      setError("Please fill in all fields");
+      setError("Please fill all fields");
       return;
     }
 
     setError("");
-    console.log("Login Data:", form);
 
-    // 👉 Send to backend (axios/fetch)
+    // ✅ MOCK LOGIN (no backend yet)
+    const tempUser = {
+      email: form.email,
+      name: "Client"
+    };
+
+    localStorage.setItem("user", JSON.stringify(tempUser));
+
+    navigate("/client/dashboard");
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Login</h2>
+        <h2 style={styles.title}>Welcome Back 💆‍♀️</h2>
+        <p style={styles.subtitle}>Login to Beauty Wonderland Spa</p>
 
         {error && <p style={styles.error}>{error}</p>}
 
         <form onSubmit={handleSubmit} style={styles.form}>
-          
-          {/* Email */}
+
           <input
-            type="email"
             name="email"
-            placeholder="Email"
-            value={form.email}
+            placeholder="Email address"
             onChange={handleChange}
             style={styles.input}
           />
 
-          {/* Password */}
           <input
-            type="password"
             name="password"
+            type="password"
             placeholder="Password"
-            value={form.password}
             onChange={handleChange}
             style={styles.input}
           />
 
-          {/* Button */}
           <button type="submit" style={styles.button}>
             Login
           </button>
+
         </form>
       </div>
     </div>
   );
 }
 
-/* 🔥 Inline Styles */
 const styles = {
   container: {
-    minHeight: "100vh",
+    height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fdf2f8"
+    background: "linear-gradient(135deg, #ffd6e8, #fff)",
+    fontFamily: "Arial"
   },
+
   card: {
-    backgroundColor: "#fff",
-    padding: "30px",
-    borderRadius: "15px",
-    width: "100%",
-    maxWidth: "400px",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
+    background: "white",
+    padding: "40px",
+    borderRadius: "18px",
+    width: "340px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+    textAlign: "center"
   },
+
   title: {
-    textAlign: "center",
-    marginBottom: "20px"
+    marginBottom: "5px",
+    color: "#d63384"
   },
+
+  subtitle: {
+    fontSize: "14px",
+    marginBottom: "20px",
+    color: "#777"
+  },
+
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: "12px"
+    gap: "15px"
   },
+
   input: {
     padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    outline: "none",
     fontSize: "14px"
   },
+
   button: {
-    marginTop: "10px",
     padding: "12px",
-    backgroundColor: "#ec4899",
-    color: "white",
+    background: "linear-gradient(90deg, #ff66b2, #ff99cc)",
     border: "none",
-    borderRadius: "8px",
+    borderRadius: "10px",
+    color: "white",
+    fontWeight: "bold",
     cursor: "pointer",
-    fontWeight: "bold"
+    transition: "0.3s"
   },
+
   error: {
     color: "red",
-    textAlign: "center",
-    fontSize: "14px"
+    fontSize: "13px"
   }
 };

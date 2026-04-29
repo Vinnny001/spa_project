@@ -1,0 +1,10 @@
+.side-link {
+  padding: 8px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.side-link:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateX(3px);
+}
