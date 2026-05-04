@@ -1,0 +1,41 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff5f7;
+  color: #333;
+}
+
+/* =========================
+   ROOT
+========================= */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}

@@ -6,27 +6,30 @@ import Login from "./pages/auth/Login";
 
 import ClientLayout from "./layouts/ClientLayout";
 import Dashboard from "./pages/client/Dashboard";
+import Profile from "./pages/client/Profile";
 import Services from "./pages/client/Services";
-
 import BookAppointment from "./pages/client/BookAppointment";
 import MyAppointments from "./pages/client/MyAppointments";
 import ServicesHistory from "./pages/client/MyServicesHistory";
 import Notifications from "./pages/client/Notifications";
-import Payment from "./pages/client/Payments"; // ⚠ keep THIS ONLY if file is "Payments.jsx"
+import Payment from "./pages/client/Payments";
+
+import "./assets/styles/App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
 
-        {/* PUBLIC */}
+        {/* PUBLIC ROUTES */}
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-        {/* CLIENT AREA */}
+        {/* CLIENT DASHBOARD LAYOUT */}
         <Route path="/client" element={<ClientLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="services" element={<Services />} />
           <Route path="book-appointment" element={<BookAppointment />} />
           <Route path="my-appointments" element={<MyAppointments />} />

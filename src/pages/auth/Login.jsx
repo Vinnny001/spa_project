@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "../../services/authService";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,55 +18,53 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
     if (!form.email || !form.password) {
       setError("Please fill all fields");
       return;
     }
 
-    setError("");
+    const result = AuthService.login(form.email, form.password);
 
-    // ✅ MOCK LOGIN (no backend yet)
-    const tempUser = {
-      email: form.email,
-      name: "Client"
-    };
-
-    localStorage.setItem("user", JSON.stringify(tempUser));
-
-    navigate("/client/dashboard");
+    if (result.success) {
+      navigate("/client/dashboard");
+    } else {
+      setError(result.message);
+    }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Welcome Back 💆‍♀️</h2>
-        <p style={styles.subtitle}>Login to Beauty Wonderland Spa</p>
 
-        {error && <p style={styles.error}>{error}</p>}
+        <h2 style={styles.title}>Welcome Back 💆‍♀️</h2>
+
+        <p style={styles.subtitle}>
+          Login to access your Beauty Wonderland Spa account
+        </p>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <form onSubmit={handleSubmit} style={styles.form}>
 
           <input
             name="email"
-            placeholder="Email address"
+            placeholder="Email"
             onChange={handleChange}
-            style={styles.input}
           />
 
           <input
-            name="password"
             type="password"
+            name="password"
             placeholder="Password"
             onChange={handleChange}
-            style={styles.input}
           />
 
-          <button type="submit" style={styles.button}>
-            Login
-          </button>
+          <button type="submit">Login</button>
 
         </form>
+
       </div>
     </div>
   );
@@ -77,8 +76,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(135deg, #ffd6e8, #fff)",
-    fontFamily: "Arial"
+    background: "linear-gradient(135deg, #ffd6e8, #fff)"
   },
 
   card: {
@@ -86,19 +84,18 @@ const styles = {
     padding: "40px",
     borderRadius: "18px",
     width: "340px",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-    textAlign: "center"
+    textAlign: "center",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
   },
 
   title: {
-    marginBottom: "5px",
     color: "#d63384"
   },
 
   subtitle: {
     fontSize: "14px",
-    marginBottom: "20px",
-    color: "#777"
+    color: "#777",
+    marginBottom: "20px"
   },
 
   form: {
@@ -110,9 +107,7 @@ const styles = {
   input: {
     padding: "12px",
     borderRadius: "10px",
-    border: "1px solid #ddd",
-    outline: "none",
-    fontSize: "14px"
+    border: "1px solid #ddd"
   },
 
   button: {
@@ -122,8 +117,7 @@ const styles = {
     borderRadius: "10px",
     color: "white",
     fontWeight: "bold",
-    cursor: "pointer",
-    transition: "0.3s"
+    cursor: "pointer"
   },
 
   error: {
