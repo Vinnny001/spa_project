@@ -1,0 +1,90 @@
+/* GENERAL */
+.admin-page {
+  padding: 20px;
+}
+
+/* DASHBOARD */
+.dashboard-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.admin-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.admin-card h3 {
+  color: #d63384;
+}
+
+/* BOOKINGS (VERTICAL) */
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-card {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+
+  display: flex;
+  justify-content: space-between;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.booking-actions button {
+  margin: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* SERVICES */
+.service-item {
+  display: flex;
+  justify-content: space-between;
+
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+
+  margin-bottom: 10px;
+}
+
+.service-actions button {
+  margin-left: 5px;
+}
+
+/* CLIENTS */
+.client-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.client-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 200px;
+}
+
+/* STATUS */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.status.pending { background: #fff3cd; }
+.status.approved { background: #d1e7dd; }
+.status.completed { background: #cfe2ff; }
+.status.cancelled { background: #f8d7da; }
