@@ -1,4 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ManageServices from "./pages/admin/ManageServices";
+import ManageBookings from "./pages/admin/ManageBookings";
+import ManageClients from "./pages/admin/ManageClients";
 import { Suspense, lazy } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -25,6 +31,12 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
 
+<Route path="/admin" element={<AdminLayout />}>
+  <Route index element={<AdminDashboard />} />
+  <Route path="services" element={<ManageServices />} />
+  <Route path="bookings" element={<ManageBookings />} />
+  <Route path="clients" element={<ManageClients />} />
+</Route>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
