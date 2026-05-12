@@ -1,0 +1,155 @@
+/* PAGE */
+.services-page {
+  padding: 40px;
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* MAIN TITLE */
+.services-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 34px;
+  color: #222;
+}
+
+/* CATEGORY SECTION */
+.category-section {
+  margin-bottom: 80px; /* BIG SPACE AFTER EACH CATEGORY */
+}
+
+/* CATEGORY TITLE */
+.category-title {
+  color: #d63384;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+/* CATEGORY DESCRIPTION */
+.category-description {
+  color: gray;
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+/* GRID */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* CARD */
+.service-card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+  transition: 0.3s;
+}
+
+/* HOVER */
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+/* SERVICE NAME */
+.service-card h3 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+/* SERVICE DESCRIPTION */
+.service-description {
+  color: gray;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+/* IMAGE ROW */
+.service-images {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* IMAGES */
+.service-images img {
+  width: 75px;
+  height: 75px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  flex-shrink: 0;
+}
+
+/* DETAILS */
+.service-details {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+  font-weight: bold;
+}
+
+/* BUTTON */
+.book-btn {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #d63384;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+.book-btn:hover {
+  background: #b0256b;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  .services-page {
+    padding: 20px;
+  }
+
+  .services-title {
+    font-size: 28px;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+
+  .service-images img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .category-section {
+    margin-bottom: 60px;
+  }
+}
+

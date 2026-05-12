@@ -44,7 +44,7 @@ export default function ClientLayout() {
       <div className={`sidebar ${open ? "open" : ""}`}>
 
         <h2 className="logo">
-          Welcome {user?.firstName || "User"}
+          Welcome {user?.first_name || "User"}
         </h2>
 
         <Link to="/client/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>

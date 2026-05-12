@@ -1,44 +1,54 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-import Home from "./pages/shared/Home";
-import Signup from "./pages/shared/Signup";
-import Login from "./pages/auth/Login";
+// 🔥 Lazy imports
+const Home = lazy(() => import("./pages/shared/Home"));
+const Signup = lazy(() => import("./pages/shared/Signup"));
+const Login = lazy(() => import("./pages/auth/Login"));
 
-import ClientLayout from "./layouts/ClientLayout";
-import Dashboard from "./pages/client/Dashboard";
+const ClientLayout = lazy(() => import("./layouts/ClientLayout"));
+const Dashboard = lazy(() => import("./pages/client/Dashboard"));
 import Profile from "./pages/client/Profile";
-import Services from "./pages/client/Services";
-import BookAppointment from "./pages/client/BookAppointment";
-import MyAppointments from "./pages/client/MyAppointments";
-import ServicesHistory from "./pages/client/MyServicesHistory";
-import Notifications from "./pages/client/Notifications";
-import Payment from "./pages/client/Payments";
 
-import "./assets/styles/App.css";
+const Services = lazy(() => import("./pages/client/Services"));
+const BookAppointment = lazy(() => import("./pages/client/BookAppointment"));
+const MyAppointments = lazy(() => import("./pages/client/MyAppointments"));
+const ServicesHistory = lazy(() => import("./pages/client/MyServicesHistory"));
+const Notifications = lazy(() => import("./pages/client/Notifications"));
+const Payment = lazy(() => import("./pages/client/Payments"));
 
 function App() {
   return (
     <Router>
-      <Routes>
+      {/* ⏳ fallback while loading */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
 
-        {/* PUBLIC ROUTES */}
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
 
-        {/* CLIENT DASHBOARD LAYOUT */}
-        <Route path="/client" element={<ClientLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="services" element={<Services />} />
-          <Route path="book-appointment" element={<BookAppointment />} />
-          <Route path="my-appointments" element={<MyAppointments />} />
-          <Route path="services-history" element={<ServicesHistory />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="payment" element={<Payment />} />
-        </Route>
+          <Route
+  path="/client"
+  element={
+    <ProtectedRoute>
+      <ClientLayout />
+    </ProtectedRoute>
+  }
+>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="services" element={<Services />} />
+            <Route path="book-appointment" element={<BookAppointment />} />
+            <Route path="my-appointments" element={<MyAppointments />} />
+            <Route path="services-history" element={<ServicesHistory />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="payment" element={<Payment />} />
+          </Route>
 
-      </Routes>
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
